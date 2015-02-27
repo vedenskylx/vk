@@ -23,21 +23,8 @@ import string
 try:
 	from pync import Notifier
 except:
-	import pynotify
-
-
-
-
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('-n', '--name',required=True, dest='name',
-                        help='Введите имя пользователя в кавычках')
-parser.add_argument('-p', '--password', required=True, dest='password',
-                        help='Введите пароль в кавычках')
-args = parser.parse_args()
-user = args.name;
-password = args.password;    
-
+	print "error Notifier"
+#import pynotify
 
 
 
@@ -51,24 +38,20 @@ SIZE_64X64=b'medium'
 SIZE_174X174=b'large'
 SIZE_300X300=b'extralarge'
 SIZE_RAW=b'mega'
-
+driver = webdriver.Firefox()
 app_title = "vkCheck"
 
-here = os.getcwd();
-
-chromedriver = here+"/chromedriver"
-
-os.environ["webdriver.chrome.driver"] = chromedriver
-driver = webdriver.Chrome(chromedriver)
 driver.get("https://oauth.vk.com/authorize?client_id=3682744&v=5.7&scope=wall,audio,offline&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token")
 
-user_input = driver.find_element_by_name("email")
-user_input.send_keys(user)
-password_input = driver.find_element_by_name("pass")
-password_input.send_keys(password)
+
+
+# user_input = driver.find_element_by_name("email")
+# user_input.send_keys(user)
+# password_input = driver.find_element_by_name("pass")
+# password_input.send_keys(password)
 submit = driver.find_element_by_id("install_allow")
 
-submit.click()
+# submit.click()
 
 current = driver.current_url
 access_list = (current.split("#"))[1].split("&")
@@ -82,9 +65,7 @@ def massage(msg):
 	try:
 		Notifier.notify(msg, title="VKCheck")
 	except:
-		if pynotify.init('icon-summary-body'):
-			pynotify.Notification("VKCheck", msg).show()
-
+		print msg
 	
 
 
