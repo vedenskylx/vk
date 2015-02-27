@@ -43,16 +43,16 @@ app_title = "vkCheck"
 
 driver.get("https://oauth.vk.com/authorize?client_id=3682744&v=5.7&scope=wall,audio,offline&redirect_uri=http://oauth.vk.com/blank.html&display=page&response_type=token")
 
-user = "alex2340@rambler.ru"
-password = "alexander89022472495"
 
 
-user_input = driver.find_element_by_name("email")
-user_input.send_keys(user)
-password_input = driver.find_element_by_name("pass")
-password_input.send_keys(password)
+# user_input = driver.find_element_by_name("email")
+# user_input.send_keys(user)
+# password_input = driver.find_element_by_name("pass")
+# password_input.send_keys(password)
 submit = driver.find_element_by_id("install_allow")
-submit.click()
+
+# submit.click()
+
 current = driver.current_url
 access_list = (current.split("#"))[1].split("&")
 access_token = (access_list[0].split("="))[1]
